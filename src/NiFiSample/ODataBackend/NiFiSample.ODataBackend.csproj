@@ -9,7 +9,9 @@
     <XunitStartupFullName>IIS.NiFiSample.Startup</XunitStartupFullName>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="appsettings.json"><CopyToOutputDirectory>Always</CopyToOutputDirectory></None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NewPlatform.Flexberry.StyleCopRuleset" Version="1.0.0"></PackageReference>
