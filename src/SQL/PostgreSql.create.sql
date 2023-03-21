@@ -9,19 +9,6 @@ CREATE TABLE Brand (
  PRIMARY KEY (primaryKey));
 
 
-CREATE TABLE CarData (
- primaryKey UUID NOT NULL,
- BrandName VARCHAR(255) NOT NULL,
- CarBody VARCHAR(9) NULL,
- CarDate TIMESTAMP(3) NOT NULL,
- CarNumber VARCHAR(255) NOT NULL,
- SparePartName VARCHAR(255) NULL,
- SparePartProducingCountryName VARCHAR(255) NULL,
- SparePartQuantity INT NULL,
- SparePartUsed BOOLEAN NULL,
- PRIMARY KEY (primaryKey));
-
-
 CREATE TABLE ProducingCountry (
  primaryKey UUID NOT NULL,
  Name VARCHAR(255) NULL,
