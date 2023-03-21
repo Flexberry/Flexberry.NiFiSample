@@ -23,34 +23,7 @@ services:
     networks:
       - nifisample
 
-  clickhouse-db:
-    image: nifisample/clickhouse
-    command: gosu clickhouse:clickhouse sh -c ' while :; do /usr/bin/clickhouse-server --config-file=/etc/clickhouse-server/config.xml; sleep 1; done'
-    volumes:
-      - NiFiSampleClickHouseDb:/var/lib/clickhouse
-    ports:
-      - 8123:8123
-      - 9000:9000
-    networks:
-      - nifisample
-
-  nifi:
-    image: nifisample/nifi
-    ports:
-      - 8443:8443
-    environment:
-      # 4 characters min
-      SINGLE_USER_CREDENTIALS_USERNAME: flexberryuser
-      # 12 characters min
-      SINGLE_USER_CREDENTIALS_PASSWORD: jhvjhvjhvjhv
-    depends_on:
-      - app-postgre-db
-      - clickhouse-db
-    networks:
-      - nifisample
-
 volumes:
-  NiFiSampleClickHouseDb:
   NiFiSamplePostgreDb:
 
 networks:
