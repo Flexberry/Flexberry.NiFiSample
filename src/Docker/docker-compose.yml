@@ -10,7 +10,7 @@ services:
     environment:
       - UploadUrl=Uploads
       - BackendRoot=https://localhost
-      - DefConnStr=SERVER=app-postgres-db;User ID=flexberryuser;Password=jhv;Port=5432;database=appdb;
+      - DefConnStr=SERVER=app-postgre-db;User ID=flexberryuser;Password=jhv;Port=5432;database=appdb;
     networks:
       - nifisample
 
