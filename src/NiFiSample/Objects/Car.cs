@@ -38,6 +38,8 @@ namespace IIS.NiFiSample
             "Creator as \'Creator\'",
             "EditTime as \'Edit time\'",
             "Editor as \'Editor\'"})]
+    [AssociatedDetailViewAttribute("AuditView", "SparePart", "AuditView", true, "", "Spare part", true, new string[] {
+            ""})]
     [View("CarE", new string[] {
             "CarNumber as \'Car number\'",
             "CarBody as \'Car body\'",
