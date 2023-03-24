@@ -4,3 +4,4 @@ docker build --no-cache -f Dockerfiles/Dockerfile.PostgreSql -t nifisample/postg
 
 docker build --no-cache -f Dockerfiles/Dockerfile.Clickhouse -t nifisample/clickhouse ../SQL
 
+docker build --no-cache -f Dockerfile.NiFi -t nifisample/nifi ..
