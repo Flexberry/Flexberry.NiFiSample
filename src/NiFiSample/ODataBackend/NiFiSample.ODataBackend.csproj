@@ -14,6 +14,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="NewPlatform.Flexberry.Audit" Version="4.1.0-beta01" />
+    <PackageReference Include="NewPlatform.Flexberry.AuditBigData" Version="1.0.0-rc04" />
+    <PackageReference Include="NewPlatform.Flexberry.AuditBigData.Serialization.Json" Version="1.0.0-rc04" />
+    <PackageReference Include="NewPlatform.Flexberry.ORM.ClickHouseDataService" Version="6.0.0-beta02" />
     <PackageReference Include="NewPlatform.Flexberry.StyleCopRuleset" Version="1.0.0"></PackageReference>
     <PackageReference Include="NewPlatform.Flexberry.ORM.ODataService" Version="7.0.0"></PackageReference>
     <PackageReference Include="NewPlatform.Flexberry.LockService" Version="3.0.0"></PackageReference>

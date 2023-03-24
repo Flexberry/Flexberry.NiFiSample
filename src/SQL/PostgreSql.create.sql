@@ -6,6 +6,10 @@
 CREATE TABLE Brand (
  primaryKey UUID NOT NULL,
  Name VARCHAR(255) NULL,
+ CreateTime TIMESTAMP(3) NULL,
+ Creator VARCHAR(255) NULL,
+ EditTime TIMESTAMP(3) NULL,
+ Editor VARCHAR(255) NULL,
  PRIMARY KEY (primaryKey));
 
 
@@ -25,6 +29,10 @@ CREATE TABLE CarData (
 CREATE TABLE ProducingCountry (
  primaryKey UUID NOT NULL,
  Name VARCHAR(255) NULL,
+ CreateTime TIMESTAMP(3) NULL,
+ Creator VARCHAR(255) NULL,
+ EditTime TIMESTAMP(3) NULL,
+ Editor VARCHAR(255) NULL,
  PRIMARY KEY (primaryKey));
 
 
@@ -35,6 +43,10 @@ CREATE TABLE SparePart (
  Used BOOLEAN NULL,
  ProducingCountry_m0 UUID NULL,
  Car_m0 UUID NOT NULL,
+ CreateTime TIMESTAMP(3) NULL,
+ Creator VARCHAR(255) NULL,
+ EditTime TIMESTAMP(3) NULL,
+ Editor VARCHAR(255) NULL,
  PRIMARY KEY (primaryKey));
 
 
@@ -44,6 +56,10 @@ CREATE TABLE Car (
  CarDate TIMESTAMP(3) NOT NULL,
  CarNumber VARCHAR(255) NOT NULL,
  Brand_m0 UUID NOT NULL,
+ CreateTime TIMESTAMP(3) NULL,
+ Creator VARCHAR(255) NULL,
+ EditTime TIMESTAMP(3) NULL,
+ Editor VARCHAR(255) NULL,
  PRIMARY KEY (primaryKey));
 
 

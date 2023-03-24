@@ -1,1 +1,1 @@
-docker-compose -p nifisample up -d
+docker-compose -f docker-compose.yml -p nifisample up -d

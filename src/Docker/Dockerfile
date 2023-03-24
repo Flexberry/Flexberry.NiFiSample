@@ -1,4 +1,4 @@
-﻿FROM node:12 as ember_app
+﻿FROM node:10 as ember_app
 
 COPY /src/ember-app /ember-app
 
@@ -26,8 +26,8 @@ WORKDIR /NiFiSample
 
 RUN \
  dotnet restore NiFiSample.sln;\
- dotnet build NiFiSample.sln -c Release;\
- dotnet publish ODataBackend/NiFiSample.ODataBackend.csproj -c Release -o out -f netcoreapp3.1
+ dotnet build NiFiSample.sln -c Debug;\
+ dotnet publish ODataBackend/NiFiSample.ODataBackend.csproj -c Debug -o out -f netcoreapp3.1
 
 FROM mcr.microsoft.com/dotnet/aspnet:3.1
 
