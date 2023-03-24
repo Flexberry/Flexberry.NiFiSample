@@ -38,7 +38,7 @@ services:
       - nifisample
 
   loki:
-    image: flexberrysamplelogging/nifisample
+    image: nifisample/loki
     ports:
       - "3100:3100"
     command: -config.file=/etc/loki/local-config.yaml
