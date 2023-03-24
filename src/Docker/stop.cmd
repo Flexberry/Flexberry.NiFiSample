@@ -1,1 +1,1 @@
-docker-compose -p nifisample down
+docker-compose -f docker-compose.yml -p nifisample down

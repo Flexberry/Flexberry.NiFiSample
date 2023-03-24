@@ -4,6 +4,8 @@
     using ICSSoft.Services;
     using ICSSoft.STORMNET;
     using ICSSoft.STORMNET.Business;
+    using ICSSoft.STORMNET.Business.Audit;
+    using ICSSoft.STORMNET.Business.Audit.Objects;
     using ICSSoft.STORMNET.Security;
     using IIS.Caseberry.Logging.Objects;
     using Microsoft.AspNet.OData.Extensions;
@@ -11,6 +13,9 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using NewPlatform.Flexberry.AuditBigData;
+    using NewPlatform.Flexberry.AuditBigData.Serialization;
+    using NewPlatform.Flexberry.ORM;
     using NewPlatform.Flexberry.ORM.ODataService.Extensions;
     using NewPlatform.Flexberry.ORM.ODataService.Files;
     using NewPlatform.Flexberry.ORM.ODataService.Model;
@@ -129,8 +134,41 @@
             // FYI: сервис данных ходит в контейнер UnityFactory.
             container.RegisterInstance(Configuration);
 
-            RegisterDataObjectFileAccessor(container);
-            RegisterORM(container);
+            this.RegisterDataObjectFileAccessor(container);
+
+            ISecurityManager emptySecurityManager = new EmptySecurityManager();
+
+            // Регистрируем основной DataService.
+            string mainConnectionString = Configuration.GetConnectionString("DefConnStr");
+            IDataService mainDataService = new PostgresDataService(emptySecurityManager)
+            {
+                CustomizationString = mainConnectionString,
+            };
+
+            container.RegisterInstance<IDataService>(mainDataService, InstanceLifetime.Singleton);
+
+            // Регистрируем DataService аудита.
+            string auditConnectionString = Configuration.GetConnectionString("AuditConnString");
+
+            IDataService auditDataServiceClickhouse = new ClickHouseDataService()
+            {
+                CustomizationString = auditConnectionString
+            };
+            container.RegisterInstance<IDataService>("auditDataService", auditDataServiceClickhouse, InstanceLifetime.Singleton);
+
+            // Инициализируем сервис аудита.
+            var auditAppSetting = new AuditAppSetting
+            {
+                AppName = "Test.audit",
+                AuditEnabled = true,
+            };
+
+            ILegacyAuditSerializer auditSerializer = new JsonLegacyAuditSerializer();
+            ILegacyAuditConverter auditConverter = new LegacyAuditConverter<JsonFieldAuditData>();
+            IAudit audit = new LegacyAuditManager(container.Resolve<IDataService>("auditDataService"), auditConverter, auditSerializer);
+            IAuditService auditService = new AuditService();
+
+            AuditService.InitAuditService(auditAppSetting, audit, auditService);
         }
 
         /// <summary>
@@ -155,23 +193,6 @@
                     fileControllerPath,
                     uploadPath,
                     null));
-        }
-
-        /// <summary>
-        /// Register ORM implementations.
-        /// </summary>
-        /// <param name="container">Container to register at.</param>
-        private void RegisterORM(IUnityContainer container)
-        {
-            string connStr = Configuration["DefConnStr"];
-            if (string.IsNullOrEmpty(connStr))
-            {
-                throw new System.Configuration.ConfigurationErrorsException("DefConnStr is not specified in Configuration or enviromnent variables.");
-            }
-
-            container.RegisterSingleton<ISecurityManager, EmptySecurityManager>();
-            container.RegisterSingleton<IDataService, PostgresDataService>(
-                Inject.Property(nameof(PostgresDataService.CustomizationString), connStr));
         }
     }
 }

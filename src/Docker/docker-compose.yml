@@ -3,14 +3,11 @@
 services:
   app:
     image: nifisample/app
-    links:
-      - app-postgre-db:app-postgre-db
     ports:
       - 80:80
     environment:
       - UploadUrl=Uploads
-      - BackendRoot=https://localhost
-      - DefConnStr=SERVER=app-postgre-db;User ID=flexberryuser;Password=jhv;Port=5432;database=appdb;
+      - BackendRoot=http://localhost
     networks:
       - nifisample
 
@@ -22,9 +19,21 @@ services:
       - 5432:5432
     networks:
       - nifisample
+      
+  clickhouse-db:
+    image: nifisample/clickhouse
+    command: gosu clickhouse:clickhouse sh -c ' while :; do /usr/bin/clickhouse-server --config-file=/etc/clickhouse-server/config.xml; sleep 1; done'
+    volumes:
+    - NiFiSampleClickhouseDb:/var/lib/clickhouse
+    ports:
+    - 8123:8123
+    - 9000:9000
+    networks:
+    - nifisample
 
 volumes:
   NiFiSamplePostgreDb:
+  NiFiSampleClickhouseDb:
 
 networks:
   nifisample:
