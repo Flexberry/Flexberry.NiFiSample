@@ -5,4 +5,4 @@ COPY ClickhouseAnalyticsSettings/users.xml /etc/clickhouse-server/users.xml
 COPY ClickhouseAnalytics.create.sql /var/clickhouse/schema/ClickhouseAnalytics.create.sql
 
 #После запускаконтейнера надо в него зайти и выполнить эту команду вручную, т.к пока через докер не выходит создать таблицы
-#CMD clickhouse-client --host clickhouse-analitics-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/ClickhouseAnalytics.create.sql
+#CMD clickhouse-client --host clickhouse-analytics-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/ClickhouseAnalytics.create.sql
