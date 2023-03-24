@@ -34,7 +34,6 @@ services:
       SINGLE_USER_CREDENTIALS_PASSWORD: jhvjhvjhvjhv
     depends_on:
       - app-postgre-db
-      - clickhouse-db
     networks:
       - nifisample
 
