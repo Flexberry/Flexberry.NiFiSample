@@ -65,10 +65,22 @@ services:
     networks:
       - nifisample
 
+  clickhouse-analytics-db:
+    image: nifisample/clickhouseanalytics
+    command: gosu clickhouse:clickhouse sh -c ' while :; do /usr/bin/clickhouse-server --config-file=/etc/clickhouse-server/config.xml; sleep 1; done'
+    volumes:
+      - ClickhouseAnalyticsDb:/var/lib/clickhouse
+    ports:
+      - 8124:8123
+      - 9001:9000
+    networks:
+      - nifisample
+
 volumes:
   NiFiSamplePostgreDb:
   NiFiSampleAuditClickhouseDb:
   LOKIDB:
+  ClickhouseAnalyticsDb:
 
 networks:
   nifisample:
