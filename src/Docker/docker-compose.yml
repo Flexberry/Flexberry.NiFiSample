@@ -37,8 +37,29 @@ services:
     networks:
       - nifisample
 
+  loki:
+    image: nifisample/loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    networks:
+      - nifisample
+    volumes:
+      - LOKIDB:/loki
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: usr123
+      GF_SECURITY_ADMIN_USER: admin
+    networks:
+      - nifisample
+
 volumes:
   NiFiSamplePostgreDb:
+  LOKIDB:
 
 networks:
   nifisample:
