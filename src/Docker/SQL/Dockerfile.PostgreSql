@@ -4,4 +4,4 @@ ENV POSTGRES_USER flexberryuser
 ENV POSTGRES_PASSWORD jhv
 ENV POSTGRES_DB appdb
 
-COPY Postgres/PostgreSql.create.sql /docker-entrypoint-initdb.d/
+COPY PostgreSql.create.sql /docker-entrypoint-initdb.d/
