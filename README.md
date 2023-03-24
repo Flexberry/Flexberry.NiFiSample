@@ -1,41 +1,35 @@
 # Flexberry.NiFiSample
+The repository was generated with the Flexberry Designer (https://designer.flexberry.net)
 
-## Необходимые для запуска примера технологии
-Для запуска примера потребуется:
-1. [Docker](https://docs.docker.com/desktop/install/windows-install/)
+## Application deployed on GitHub Pages
 
-## Последовательность действий для запуска
+Demo application with IndexedDB (in browser):
+https://flexberry-app-sandbox.github.io/Flexberry.NiFiSample/
 
-1. Собрать Docker-образы
+## Running the application in Docker
+
+[Docker](https://docker.com) requires to run the  application from Database.
+
+Instructions:
+
+1. Building Docker image
 ```
 \src\Docker> .\create-image.cmd
 ```
 
-2. Запустить Docker-образы
+2. Run Docker image
 ```
 \src\Docker> .\start.cmd
 ```
 
-3. В запущенном из образа nifisample/clickhouse контейнере (например, с помощью плагина Doker в VS Code - нажать правой кнопкой мыши по контейнеру -> Attach Shell) выполнить команду для создания таблицы
-```
-clickhouse-client --host clickhouse-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/ClickHouseDirectGenerator.create.sql
-```
+The application will be available at http://localhost
 
-Теперь все запущено
-
-http://localhost - web приложение
-https://localhost:8443/ - nifi (логин: flexberryuser пароль: jhvjhvjhvjhv)
-http://localhost:5432/ - postgres бд приложения (логин: flexberryuser пароль: jhv)
-http://localhost:8123/ - clickhouse бд аудита (логин: default пароль: P@ssw0rd)
-
-4. Остановить выполнение Docker-образов
+3. To stop Docker image running
 ```
 \src\Docker> .\stop.cmd
 ```
 
-## Работа с nifi
+## Links to documentation
 
-1. Необходимые для создания подключений к БД драйверы jdbc находятся в каталоге /opt/jdbc
-
-postgresql-42.5.4.jar (класс org.postgresql.Driver, url соединения: jdbc:postgresql://app-postgre-db:5432/appdb) - драйвер для PostgreSQL
-clickhouse-jdbc-0.4.1-shaded.jar (класс com.clickhouse.jdbc.ClickHouseDriver, url соединения: jdbc:ch:https://clickhouse-db:8123/default?ssl=false) - драйвер ClickHouse
+More information about generating frontend: https://flexberry.github.io/en/ef2_landing_page.html
+More information about generating backend: https://flexberry.github.io/en/fo_orm-odata-service.html
