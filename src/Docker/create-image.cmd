@@ -5,3 +5,5 @@ docker build --no-cache -f Dockerfile -t nifisample/app ../..
 docker build --no-cache -f Dockerfile.NiFi -t nifisample/nifi ..
 
 docker build --no-cache -f GrafanaLoki/Dockerfile.Loki -t nifisample/loki .
+
+docker build --no-cache -f SQL/Dockerfile.ClickhouseAnalitics -t nifisample/analyticsclikhouse ../SQL

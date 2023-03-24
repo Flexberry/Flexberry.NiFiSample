@@ -1,0 +1,8 @@
+﻿FROM flexberry/clickhouse-official:20.12
+
+COPY ClickhouseAnaliticsSettings/config.xml /etc/clickhouse-server/config.xml
+COPY ClickhouseAnaliticsSettings/users.xml /etc/clickhouse-server/users.xml
+COPY ClickhouseAnalitics.create.sql /var/clickhouse/schema/ClickhouseAnalitics.create.sql
+
+#После запускаконтейнера надо в него зайти и выполнить эту команду вручную, т.к пока через докер не выходит создать таблицы
+#CMD clickhouse-client --host clickhouse-analitics-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/ClickhouseAnalitics.create.sql
