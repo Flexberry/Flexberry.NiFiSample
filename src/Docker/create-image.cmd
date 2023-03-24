@@ -5,3 +5,5 @@ docker build --no-cache -f Dockerfiles/Dockerfile.PostgreSql -t nifisample/postg
 docker build --no-cache -f Dockerfiles/Dockerfile.Audit.Clickhouse -t nifisample/audit-clickhouse ../SQL
 
 docker build --no-cache -f Dockerfile.NiFi -t nifisample/nifi ..
+
+docker build --no-cache -f GrafanaLoki/Dockerfile.Loki -t nifisample/loki .
