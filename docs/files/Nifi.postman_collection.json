@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "11478cfb-0870-45cf-b634-24bfc2c67852",
+		"name": "Nifi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24986387"
+	},
+	"item": [
+		{
+			"name": "authorization",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "flexberryuser",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "jhvjhvjhvjhv",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:8443/nifi-api/access/token",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"nifi-api",
+						"access",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "about",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiI5ODJkMzk0MS1kZjk4LTRiMTItYjI3OC05MDQ0MmZkMDYzYTIiLCJhbGciOiJQUzUxMiJ9.eyJzdWIiOiJmbGV4YmVycnl1c2VyIiwiYXVkIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsIm5iZiI6MTY3OTU1NjgzMiwiaXNzIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsInByZWZlcnJlZF91c2VybmFtZSI6ImZsZXhiZXJyeXVzZXIiLCJleHAiOjE2Nzk1ODU2MzIsImlhdCI6MTY3OTU1NjgzMiwianRpIjoiMDYyZTU2NjYtMjQyYi00ZWU4LWI2ZDEtYTBiZDYyNDg5NmRmIn0.w6F7jf1W8veRST0sI_h_fNDO5UqZwkqpXelXEYQonQ2oZw4cOGnttTBSkYWW0s2gQaQ0QzS0GbBPvtifMi35nqFYtiB8_2FWRAUMe7LRjCzd2vhJMvGA_j-4HtY67KTPhGD2GbaJH461o1DX7tGvS-i8qPGAIuox8J3VLAarYy_ywrOvhYMjpTzPDdD2fPqaXrChi3Q5qP3TOuOamtOuEYhxtO-lFvf6vzT5LndJ63feb2GFWf2F4TUpp-eIBIwueNHQ94Pel4gwIhIBVgBK3Y8gzObum_Tdc21CZsGIRM70PBbjdzTsKIfSphA4EuEk4NukUeF26klrBwLgpdIfsJQN8R0Rhb2aV-jdDwBD1DTw1It85jirlK4i0LcTdWn3tu2_lQ5QyHKDkRlddGSMbMLWFUEmKeuObXMT1YKEGXxMQuDFUCTloGqTzKutsvypdo9v0WXZP6cAl4Ib6lVTLrDX8TQnf-wFKssQj6jXEDlI6gi9xcqk9LV6lc2Bt-k5-ge2iHiupRlOA6f-GIMdRLED3rRsnEjZXRTzF2dEmB5q8gviTbM6afqyp3xvMMEAW67jNfWYq8ASyRQ6Lxug5NHM27rRKlQ70zF5nNQuoXPt2uspGStY-lNf2wJcCx1dy-VjzD8TtpJcjEkgbOPYFGGn_ijoEkzbSnvL9VqoUdY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/nifi-api/flow/about",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"nifi-api",
+						"flow",
+						"about"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get main group info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiI5ODJkMzk0MS1kZjk4LTRiMTItYjI3OC05MDQ0MmZkMDYzYTIiLCJhbGciOiJQUzUxMiJ9.eyJzdWIiOiJmbGV4YmVycnl1c2VyIiwiYXVkIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsIm5iZiI6MTY3OTU1NjgzMiwiaXNzIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsInByZWZlcnJlZF91c2VybmFtZSI6ImZsZXhiZXJyeXVzZXIiLCJleHAiOjE2Nzk1ODU2MzIsImlhdCI6MTY3OTU1NjgzMiwianRpIjoiMDYyZTU2NjYtMjQyYi00ZWU4LWI2ZDEtYTBiZDYyNDg5NmRmIn0.w6F7jf1W8veRST0sI_h_fNDO5UqZwkqpXelXEYQonQ2oZw4cOGnttTBSkYWW0s2gQaQ0QzS0GbBPvtifMi35nqFYtiB8_2FWRAUMe7LRjCzd2vhJMvGA_j-4HtY67KTPhGD2GbaJH461o1DX7tGvS-i8qPGAIuox8J3VLAarYy_ywrOvhYMjpTzPDdD2fPqaXrChi3Q5qP3TOuOamtOuEYhxtO-lFvf6vzT5LndJ63feb2GFWf2F4TUpp-eIBIwueNHQ94Pel4gwIhIBVgBK3Y8gzObum_Tdc21CZsGIRM70PBbjdzTsKIfSphA4EuEk4NukUeF26klrBwLgpdIfsJQN8R0Rhb2aV-jdDwBD1DTw1It85jirlK4i0LcTdWn3tu2_lQ5QyHKDkRlddGSMbMLWFUEmKeuObXMT1YKEGXxMQuDFUCTloGqTzKutsvypdo9v0WXZP6cAl4Ib6lVTLrDX8TQnf-wFKssQj6jXEDlI6gi9xcqk9LV6lc2Bt-k5-ge2iHiupRlOA6f-GIMdRLED3rRsnEjZXRTzF2dEmB5q8gviTbM6afqyp3xvMMEAW67jNfWYq8ASyRQ6Lxug5NHM27rRKlQ70zF5nNQuoXPt2uspGStY-lNf2wJcCx1dy-VjzD8TtpJcjEkgbOPYFGGn_ijoEkzbSnvL9VqoUdY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/nifi-api/process-groups/root",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"nifi-api",
+						"process-groups",
+						"root"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create controller-services",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiI5ODJkMzk0MS1kZjk4LTRiMTItYjI3OC05MDQ0MmZkMDYzYTIiLCJhbGciOiJQUzUxMiJ9.eyJzdWIiOiJmbGV4YmVycnl1c2VyIiwiYXVkIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsIm5iZiI6MTY3OTU1NjgzMiwiaXNzIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsInByZWZlcnJlZF91c2VybmFtZSI6ImZsZXhiZXJyeXVzZXIiLCJleHAiOjE2Nzk1ODU2MzIsImlhdCI6MTY3OTU1NjgzMiwianRpIjoiMDYyZTU2NjYtMjQyYi00ZWU4LWI2ZDEtYTBiZDYyNDg5NmRmIn0.w6F7jf1W8veRST0sI_h_fNDO5UqZwkqpXelXEYQonQ2oZw4cOGnttTBSkYWW0s2gQaQ0QzS0GbBPvtifMi35nqFYtiB8_2FWRAUMe7LRjCzd2vhJMvGA_j-4HtY67KTPhGD2GbaJH461o1DX7tGvS-i8qPGAIuox8J3VLAarYy_ywrOvhYMjpTzPDdD2fPqaXrChi3Q5qP3TOuOamtOuEYhxtO-lFvf6vzT5LndJ63feb2GFWf2F4TUpp-eIBIwueNHQ94Pel4gwIhIBVgBK3Y8gzObum_Tdc21CZsGIRM70PBbjdzTsKIfSphA4EuEk4NukUeF26klrBwLgpdIfsJQN8R0Rhb2aV-jdDwBD1DTw1It85jirlK4i0LcTdWn3tu2_lQ5QyHKDkRlddGSMbMLWFUEmKeuObXMT1YKEGXxMQuDFUCTloGqTzKutsvypdo9v0WXZP6cAl4Ib6lVTLrDX8TQnf-wFKssQj6jXEDlI6gi9xcqk9LV6lc2Bt-k5-ge2iHiupRlOA6f-GIMdRLED3rRsnEjZXRTzF2dEmB5q8gviTbM6afqyp3xvMMEAW67jNfWYq8ASyRQ6Lxug5NHM27rRKlQ70zF5nNQuoXPt2uspGStY-lNf2wJcCx1dy-VjzD8TtpJcjEkgbOPYFGGn_ijoEkzbSnvL9VqoUdY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"revision\": {\r\n    \"clientId\": \"a09f2359-0165-1000-bf28-1dca98f6e258\",\r\n    \"version\": 0\r\n  },\r\n  \"permissions\": {\r\n    \"canRead\": true,\r\n    \"canWrite\": true\r\n  },\r\n  \"bulletins\": [],\r\n  \"component\": {\r\n    \"name\": \"DBCPConnectionPoolPostgreSQL\",\r\n    \"type\": \"org.apache.nifi.dbcp.DBCPConnectionPool\",\r\n    \"bundle\": {\r\n      \"group\": \"org.apache.nifi\",\r\n      \"artifact\": \"nifi-dbcp-service-nar\",\r\n      \"version\": \"1.20.0\"\r\n    },\r\n    \"controllerServiceApis\": [\r\n        {\r\n            \"type\": \"org.apache.nifi.dbcp.DBCPService\",\r\n            \"bundle\": {\r\n                \"group\": \"org.apache.nifi\",\r\n                \"artifact\": \"nifi-standard-services-api-nar\",\r\n                \"version\": \"1.20.0\"\r\n            }\r\n        }\r\n    ],\r\n    \"comments\": \"\",\r\n    \"state\": \"DISABLED\",\r\n    \"persistsState\": false,\r\n    \"restricted\": false,\r\n    \"deprecated\": false,\r\n    \"multipleVersionsAvailable\": false,\r\n    \"properties\": {\r\n      \"Database Connection URL\": \"jdbc:postgresql://app-postgre-db:5432/appdb\",\r\n      \"Database Driver Class Name\": \"org.postgresql.Driver\",\r\n      \"database-driver-locations\": \"/opt/jdbc/postgresql-42.5.4.jar\",\r\n      \"Database User\": \"flexberryuser\",\r\n      \"Password\": \"enc{d65fcc3ac328b4f436f4ffd1227e943587b5835b1f967253a64e3126f3a2302d4e253f}\",\r\n      \"Max Wait Time\": \"500 millis\",\r\n      \"Max Total Connections\": \"8\",\r\n      \"Validation-query\": null\r\n    },\r\n    \"descriptors\": {}\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/nifi-api/process-groups/root/controller-services",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"nifi-api",
+						"process-groups",
+						"root",
+						"controller-services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get controller-service Info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiI5ODJkMzk0MS1kZjk4LTRiMTItYjI3OC05MDQ0MmZkMDYzYTIiLCJhbGciOiJQUzUxMiJ9.eyJzdWIiOiJmbGV4YmVycnl1c2VyIiwiYXVkIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsIm5iZiI6MTY3OTU1NjgzMiwiaXNzIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsInByZWZlcnJlZF91c2VybmFtZSI6ImZsZXhiZXJyeXVzZXIiLCJleHAiOjE2Nzk1ODU2MzIsImlhdCI6MTY3OTU1NjgzMiwianRpIjoiMDYyZTU2NjYtMjQyYi00ZWU4LWI2ZDEtYTBiZDYyNDg5NmRmIn0.w6F7jf1W8veRST0sI_h_fNDO5UqZwkqpXelXEYQonQ2oZw4cOGnttTBSkYWW0s2gQaQ0QzS0GbBPvtifMi35nqFYtiB8_2FWRAUMe7LRjCzd2vhJMvGA_j-4HtY67KTPhGD2GbaJH461o1DX7tGvS-i8qPGAIuox8J3VLAarYy_ywrOvhYMjpTzPDdD2fPqaXrChi3Q5qP3TOuOamtOuEYhxtO-lFvf6vzT5LndJ63feb2GFWf2F4TUpp-eIBIwueNHQ94Pel4gwIhIBVgBK3Y8gzObum_Tdc21CZsGIRM70PBbjdzTsKIfSphA4EuEk4NukUeF26klrBwLgpdIfsJQN8R0Rhb2aV-jdDwBD1DTw1It85jirlK4i0LcTdWn3tu2_lQ5QyHKDkRlddGSMbMLWFUEmKeuObXMT1YKEGXxMQuDFUCTloGqTzKutsvypdo9v0WXZP6cAl4Ib6lVTLrDX8TQnf-wFKssQj6jXEDlI6gi9xcqk9LV6lc2Bt-k5-ge2iHiupRlOA6f-GIMdRLED3rRsnEjZXRTzF2dEmB5q8gviTbM6afqyp3xvMMEAW67jNfWYq8ASyRQ6Lxug5NHM27rRKlQ70zF5nNQuoXPt2uspGStY-lNf2wJcCx1dy-VjzD8TtpJcjEkgbOPYFGGn_ijoEkzbSnvL9VqoUdY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:8443/nifi-api/controller-services/0d9a7c3e-0187-1000-04be-5c22ff62ff0c",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"nifi-api",
+						"controller-services",
+						"0d9a7c3e-0187-1000-04be-5c22ff62ff0c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Try to edit controller-service",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiI5ODJkMzk0MS1kZjk4LTRiMTItYjI3OC05MDQ0MmZkMDYzYTIiLCJhbGciOiJQUzUxMiJ9.eyJzdWIiOiJmbGV4YmVycnl1c2VyIiwiYXVkIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsIm5iZiI6MTY3OTU1NjgzMiwiaXNzIjoiU2luZ2xlVXNlckxvZ2luSWRlbnRpdHlQcm92aWRlciIsInByZWZlcnJlZF91c2VybmFtZSI6ImZsZXhiZXJyeXVzZXIiLCJleHAiOjE2Nzk1ODU2MzIsImlhdCI6MTY3OTU1NjgzMiwianRpIjoiMDYyZTU2NjYtMjQyYi00ZWU4LWI2ZDEtYTBiZDYyNDg5NmRmIn0.w6F7jf1W8veRST0sI_h_fNDO5UqZwkqpXelXEYQonQ2oZw4cOGnttTBSkYWW0s2gQaQ0QzS0GbBPvtifMi35nqFYtiB8_2FWRAUMe7LRjCzd2vhJMvGA_j-4HtY67KTPhGD2GbaJH461o1DX7tGvS-i8qPGAIuox8J3VLAarYy_ywrOvhYMjpTzPDdD2fPqaXrChi3Q5qP3TOuOamtOuEYhxtO-lFvf6vzT5LndJ63feb2GFWf2F4TUpp-eIBIwueNHQ94Pel4gwIhIBVgBK3Y8gzObum_Tdc21CZsGIRM70PBbjdzTsKIfSphA4EuEk4NukUeF26klrBwLgpdIfsJQN8R0Rhb2aV-jdDwBD1DTw1It85jirlK4i0LcTdWn3tu2_lQ5QyHKDkRlddGSMbMLWFUEmKeuObXMT1YKEGXxMQuDFUCTloGqTzKutsvypdo9v0WXZP6cAl4Ib6lVTLrDX8TQnf-wFKssQj6jXEDlI6gi9xcqk9LV6lc2Bt-k5-ge2iHiupRlOA6f-GIMdRLED3rRsnEjZXRTzF2dEmB5q8gviTbM6afqyp3xvMMEAW67jNfWYq8ASyRQ6Lxug5NHM27rRKlQ70zF5nNQuoXPt2uspGStY-lNf2wJcCx1dy-VjzD8TtpJcjEkgbOPYFGGn_ijoEkzbSnvL9VqoUdY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"revision\": {\r\n    \"version\": 2\r\n  },\r\n  \"permissions\": {\r\n    \"canRead\": true,\r\n    \"canWrite\": true\r\n  },\r\n  \"parentGroupId\": \"0d434264-0187-1000-298e-d9ebef1b39ac\",\r\n  \"component\": {\r\n    \"parentGroupId\": \"0d434264-0187-1000-298e-d9ebef1b39ac\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8443/nifi-api/controller-services/0dac0f04-0187-1000-e091-1d8161a5edc2",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"nifi-api",
+						"controller-services",
+						"0dac0f04-0187-1000-e091-1d8161a5edc2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
