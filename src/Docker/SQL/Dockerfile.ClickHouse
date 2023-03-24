@@ -1,8 +1,0 @@
-FROM flexberry/clickhouse-official:20.12
-
-COPY ClickHouse/config.xml /etc/clickhouse-server/config.xml
-COPY ClickHouse/users.xml /etc/clickhouse-server/users.xml
-COPY ClickHouseDirectGenerator.create.sql /var/clickhouse/schema/ClickHouseDirectGenerator.create.sql
-
-#После запуска контейнера надо в него зайти и выполнить эту команду вручную, т.к пока через докер не выходит создать таблицы
-#CMD clickhouse-client --host clickhouse-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/ClickHouseDirectGenerator.create.sql
