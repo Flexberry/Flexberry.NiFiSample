@@ -20,21 +20,3 @@ SETTINGS index_granularity = 8192;
 
 
 CREATE TABLE AuditBuffer AS Audit ENGINE = Buffer(currentDatabase(), Audit, 16, 0.1, 2, 10, 10000, 100000, 1000000);
-
-
-CREATE VIEW AuditView AS
-SELECT primaryKey,
-	UserName,
-	UserLogin,
-	OperationId,
-	OperationTags,
-	ObjectType,
-	ObjectPrimaryKey,
-	OperationTime,
-	OperationType,
-	ExecutionStatus,
-	Source,
-	SerializedFields,
-	HeadAuditEntity,
-	toString(OperationTime) as OperationTimeString
-FROM Audit;

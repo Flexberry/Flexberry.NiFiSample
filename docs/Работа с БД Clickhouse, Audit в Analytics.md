@@ -5,33 +5,6 @@
 
 Поля таблиц: primaryKey, OperationTime, OperationId, OperationTags, OperationType, ObjectType, UserName, UserLogin.
 
-## Настройка представления AuditView
-В NiFi при работе с полями типа **DateTime** из  Clickhouse возникают ошибки преобразования данных, дата преобразуется в формат **yyyy-MM-ddTHH:mm:ss** и в дальнейшем не могут из этого формата строки преобразоваться обратно.
-
-Для решения проблемы добавили представление **AuditView**, где добавили поле **toString(OperationTime) as OperationTimeString**. Уже с этим полем будем в дальнейшем работать.
-```sql
-CREATE VIEW AuditView AS
-SELECT primaryKey,
-	UserName,
-	UserLogin,
-	OperationId,
-	OperationTags,
-	ObjectType,
-	ObjectPrimaryKey,
-	OperationTime,
-	OperationType,
-	ExecutionStatus,
-	Source,
-	SerializedFields,
-	HeadAuditEntity,
-	toString(OperationTime) as OperationTimeString
-FROM Audit
-```
-
-Результирующий формат поля **yyyy-MM-dd HH:mm:ss**.
-
-[Функции для работы с датами и временем](https://clickhouse.com/docs/ru/sql-reference/functions/date-time-functions)
-
 ## Вычитка данных из БД Clickhouse Audit
 Для вычитки из базы данных есть процессоры:
 * ExecuteSQL
@@ -58,26 +31,39 @@ FROM Audit
 
 1. Добавляем процессор **QueryDatabaseTableRecord** в рабочую область нашей группы процессоров.
 <br/>Вкладка **Properties**, атрибут **Database Connection Pooling Service** = DBCPConnectionPoolClickhouseAudit (выбрать из списка)
-</br>Атрибут **Table Name** = AuditView
-</br>Атрибут **Columns to Return** = primaryKey, UserName, UserLogin, OperationId, OperationTags, ObjectType, OperationTimeString as OperationTime, OperationType
-</br>Атрибут **Additional WHERE clause** = OperationType != 'Ratify'
-</br>Атрибут **Record Writer** = AvroRecordSetWriter (выбрать Create New Service... затем AvroRecordSetWriter)
-</br>Атрибут **Maximum-value Columns** = OperationTimeString
-</br>Атрибут **Initial Load Strategy** = **Start at Current Maximum Values** (если нужны только новые, при этом он вообще не загрузит старые) / **Start at Beginning** (загрузит все)
+<br/>Атрибут **Table Name** = AuditView
+<br/>Атрибут **Columns to Return** = primaryKey, UserName, UserLogin, OperationId, OperationTags, ObjectType, OperationTime, OperationType
+<br/>Атрибут **Additional WHERE clause** = OperationType != 'Ratify'
+<br/>Атрибут **Custom Query** = 
+```sql
+SELECT primaryKey,
+	UserName,
+	UserLogin,
+	OperationId,
+	OperationTags,
+	ObjectType,
+	toString(OperationTime) as OperationTime,
+	OperationType
+FROM Audit
+```
+<br/>(преобразуем поле с типом DateTime к строке)
+<br/>Атрибут **Record Writer** = AvroRecordSetWriter (выбрать Create New Service... затем AvroRecordSetWriter)
+<br/>Атрибут **Maximum-value Columns** = OperationTimeString
+<br/>Атрибут **Initial Load Strategy** = **Start at Current Maximum Values** (если нужны только новые, при этом он вообще не загрузит старые) / **Start at Beginning** (загрузит все)
 <br/>Активировать **AvroRecordSetWriter** в списке сервисов контроллеров группы процессов.
-</br>![Nifi CH Reader](images/nifi_ch_reader.png)
-</br>
-</br>Если выбрана опция **Start at Current Maximum Values** и необходимо сбросить макисмальное значение, то нужно нажать правой кнопкой мыши на процессоре **QueryDatabaseTableRecord**, в контекстном меню выбрать пункт **View state**. И в открывшейся форме нажать **Clear state**.
-</br>![Nifi CH Reader Clear State](images/nifi_ch_reader_clear_state.png)
+<br/>![Nifi CH Reader](images/nifi_ch_reader.png)
+<br/>
+<br/>Если выбрана опция **Start at Current Maximum Values** и необходимо сбросить макисмальное значение, то нужно нажать правой кнопкой мыши на процессоре **QueryDatabaseTableRecord**, в контекстном меню выбрать пункт **View state**. И в открывшейся форме нажать **Clear state**.
+<br/>![Nifi CH Reader Clear State](images/nifi_ch_reader_clear_state.png)
 
 2. Добавляем процессор **PutDatabaseRecord** в рабочую область нашей группы процессоров.
 <br/>Вкладка **Properties**, атрибут **Database Connection Pooling Service** = DBCPConnectionPoolClickhouseAnalytics (выбрать из списка)
-</br>Атрибут **Table Name** = Analitics
-</br>Атрибут **Statement Type** = INSERT
-</br>Атрибут **Record Reader** = AvroReader (выбрать Create New Service... затем AvroReader)
+<br/>Атрибут **Table Name** = Analitics
+<br/>Атрибут **Statement Type** = INSERT
+<br/>Атрибут **Record Reader** = AvroReader (выбрать Create New Service... затем AvroReader)
 <br/>Активировать **AvroReader** в списке сервисов контроллеров группы процессов.
-</br>![Nifi CH Reader](images/nifi_ch_writer.png)
+<br/>![Nifi CH Writer](images/nifi_ch_writer.png)
 
 3. Направляем поток **QueryDatabaseTableRecord** в **PutDatabaseRecord**.
 <br/>Должна получится такая схема:
-</br>![Nifi CH Schema](images/nifi_ch_schema.png)
+<br/>![Nifi CH Schema](images/nifi_ch_schema.png)

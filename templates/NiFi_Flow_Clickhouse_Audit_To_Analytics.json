@@ -4,7 +4,7 @@
     "instanceIdentifier": "24594a52-0187-1000-b46f-a3888d31d6ee",
     "name": "NiFi_Flow_Clickhouse_Audit_To_Analytics",
     "comments": "",
-    "position": { "x": 484.0, "y": 80.0 },
+    "position": { "x": 1408.0, "y": -16.0 },
     "processGroups": [],
     "remoteProcessGroups": [],
     "processors": [
@@ -202,13 +202,13 @@
           "version": "1.20.0"
         },
         "properties": {
-          "Table Name": "AuditView",
+          "Table Name": "Audit",
           "db-fetch-db-type": "Generic",
           "dbf-default-precision": "10",
           "qdbtr-record-writer": "73e5bfff-3688-3acd-ba25-773e2984d472",
           "Max Wait Time": "0 seconds",
           "Database Connection Pooling Service": "5c87fb76-43ce-3fc1-aaf0-11322ec11b4c",
-          "Maximum-value Columns": "OperationTimeString",
+          "Maximum-value Columns": "OperationTime",
           "dbf-user-logical-types": "false",
           "qdbt-output-batch-size": "0",
           "qdbt-max-rows": "0",
@@ -216,9 +216,9 @@
           "dbf-default-scale": "0",
           "initial-load-strategy": "Start at Current Maximum Values",
           "Fetch Size": "0",
-          "db-fetch-sql-query": null,
+          "db-fetch-sql-query": "SELECT primaryKey,\n\tUserName,\n\tUserLogin,\n\tOperationId,\n\tOperationTags,\n\tObjectType,\n\ttoString(OperationTime) as OperationTime,\n\tOperationType\nFROM Audit",
           "qdbtr-normalize": "false",
-          "Columns to Return": "primaryKey, UserName, UserLogin, OperationId, OperationTags, ObjectType, OperationTimeString as OperationTime, OperationType",
+          "Columns to Return": "primaryKey, UserName, UserLogin, OperationId, OperationTags, ObjectType, OperationTime, OperationType",
           "db-fetch-where-clause": "OperationType != 'Ratify'"
         },
         "propertyDescriptors": {
