@@ -158,6 +158,17 @@ export default Controller.extend({
         $('.ui.sidebar.main.menu').sidebar('attach events', '.ui.sidebar.main.menu .item a', 'hide');
         this.set('_hideEventIsAttached', true);
       }
+    },
+
+    addTestData() {
+      let store = this.get('store');
+      let adapter = store.adapterFor('application');
+      this.get('appState').loading();
+
+      return adapter.callFunction('AddTestData')
+      .finally(() => {
+        this.get('appState').reset();
+      });
     }
   }
 });
