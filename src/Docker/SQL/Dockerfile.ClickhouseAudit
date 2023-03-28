@@ -4,5 +4,13 @@ COPY ClickhouseAuditSettings/config.xml /etc/clickhouse-server/config.xml
 COPY ClickhouseAuditSettings/users.xml /etc/clickhouse-server/users.xml
 COPY ClickhouseAuditCreate.sql /var/clickhouse/schema/ClickhouseAuditCreate.sql
 
-#После запускаконтейнера надо в него зайти и выполнить эту команду вручную, т.к пока через докер не выходит создать таблицы
-#CMD clickhouse-client --host audit-clickhouse-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/ClickhouseAuditCreate.sql
+RUN \
+    service clickhouse-server start; \
+    PID=$!; wait $PID; \
+    clickhouse-client \
+    --host localhost \
+    --user default \
+    --password P@ssw0rd \
+    --multiquery < /var/clickhouse/schema/ClickhouseAuditCreate.sql; \
+    PID=$!; wait $PID; \
+    service clickhouse-server stop;

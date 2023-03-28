@@ -6,9 +6,11 @@ COPY ClickhouseAnalytics.create.sql /var/clickhouse/schema/ClickhouseAnalytics.c
 
 RUN \
     service clickhouse-server start; \
+    PID=$!; wait $PID; \
     clickhouse-client \
     --host localhost \
     --user default \
     --password P@ssw0rd \
     --multiquery < /var/clickhouse/schema/ClickhouseAnalytics.create.sql; \
+    PID=$!; wait $PID; \
     service clickhouse-server stop; 
