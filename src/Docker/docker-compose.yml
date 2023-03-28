@@ -76,6 +76,13 @@ services:
     networks:
       - nifisample
 
+  superset:
+    image: nifisample/superset
+    ports:
+      - 4200:8088
+    networks:
+      - nifisample
+
 volumes:
   NiFiSamplePostgreDb:
   NiFiSampleAuditClickhouseDb:
