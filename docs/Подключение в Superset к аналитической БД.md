@@ -1,6 +1,6 @@
 # Подключение в Superset к аналитической БД
 
-1. Перейти на ресурс http://localhost:4200/login/.
+1. Зайти в интерфейс Superset http://localhost:4200/login/.
 2. Авторизоваться (настройки авторизации заданы в файле /src/Docker/Superset/Dockerfile.Superset).
     - Логин: admin
     - Пароль: c1ickh0u5e
