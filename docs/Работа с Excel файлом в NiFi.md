@@ -29,19 +29,26 @@
    2. В поле `Record Writer` также выбираем Create new service. В открывшемся окне выбираем `JsonRecordSetWriter`
 4. Дальше переходим в окно настройки контроллеров (тыкнуть в пустое место на рабочей области, слева в плашке Operate появится наш Process Group, кликаем на значок шестеренки).
    ![Nifi Configuration](images/nifi_flow_configuration.png)
-5. Добавляем контроллер `AvroSchemaRegistry`. На вкладке properties создаем и заполняем свойство для парсинга файла. Имя свойства должно совпадать с именем схемы из шага 2. Шаблон может выглядеть таким образом:
+5. Добавляем контроллер `AvroSchemaRegistry`. На вкладке properties создаем и заполняем свойство для парсинга файла. Имя свойства должно совпадать с именем схемы из шага 2. Например, для таблицы вида:
+
+  | fullName    | buyDate     |
+  | ----------- | ----------- |
+  | Petrov Ivan Petrovich      | 10.10.2010       |
+  | PaIvanov Artem Sergeevichragraph   | 21.09.2011        |
+
+   Шаблон может выглядеть таким образом:
   
       {"type": "record","name": "owners","fields": [{"name": "fullName", "type": ["null", "string"]},{"name": "buyDate", "type": ["null", "int"], "logicalType": "date"}]}
 
   ![AvroSchemaRegistry Controller](images/avro-schema-registry.png)
-6. В списке контроллеров находим созданный на 3 шаге `CSVReader`. Конфигурируем следующим образом:
+1. В списке контроллеров находим созданный на 3 шаге `CSVReader`. Конфигурируем следующим образом:
    ![CSVReader Controller](images/csvreader.png)
-7. Далее находим и настраиваем контроллер `JsonRecordsetWriter`:
+2. Далее находим и настраиваем контроллер `JsonRecordsetWriter`:
    ![JsonRecordsetWriter Controller](images/json-record-set-writer.png)
-8. Активируем все три контроллера.
-9. Возвращаемся к основному рабочему пространству и добавляем еще один процессор `UpdateAttribute`. Добавляем ему свойство filename.
+3. Активируем все три контроллера.
+4. Возвращаемся к основному рабочему пространству и добавляем еще один процессор `UpdateAttribute`. Добавляем ему свойство filename.
     ![UpdateAttribute Processor](images/update-attribute-2.png)
-10. Последовательно соединяем процессоры. Обращаем внимание, что стрелка от `ConvertExcelToCSVProcessor` к `UpdateAttribute` идет только в случае `success`. Если в UpdateAttribute попадет и сконвертированный файл, и оригинальный, выберет для дальнейшей работы он неверный.
+5.  Последовательно соединяем процессоры. Обращаем внимание, что стрелка от `ConvertExcelToCSVProcessor` к `UpdateAttribute` идет только в случае `success`. Если в UpdateAttribute попадет и сконвертированный файл, и оригинальный, выберет для дальнейшей работы он неверный.
 
 ### Выгрузка файла из NiFi
 
