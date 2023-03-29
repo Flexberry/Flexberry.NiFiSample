@@ -5,12 +5,10 @@ COPY ClickhouseAnalyticsSettings/users.xml /etc/clickhouse-server/users.xml
 COPY ClickhouseAnalytics.create.sql /var/clickhouse/schema/ClickhouseAnalytics.create.sql
 
 RUN \
-    service clickhouse-server start; \
-    PID=$!; wait $PID; \
+    service clickhouse-server start && \
     clickhouse-client \
     --host localhost \
     --user default \
     --password P@ssw0rd \
-    --multiquery < /var/clickhouse/schema/ClickhouseAnalytics.create.sql; \
-    PID=$!; wait $PID; \
+    --multiquery < /var/clickhouse/schema/ClickhouseAnalytics.create.sql && \
     service clickhouse-server stop; 
