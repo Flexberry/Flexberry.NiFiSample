@@ -41,16 +41,19 @@
       {"type": "record","name": "owners","fields": [{"name": "fullName", "type": ["null", "string"]},{"name": "buyDate", "type": ["null", "int"], "logicalType": "date"}]}
 
   ![AvroSchemaRegistry Controller](images/avro-schema-registry.png)
-1. В списке контроллеров находим созданный на 3 шаге `CSVReader`. Конфигурируем следующим образом:
+
+6. В списке контроллеров находим созданный на 3 шаге `CSVReader`. Конфигурируем следующим образом:
    ![CSVReader Controller](images/csvreader.png)
-2. Далее находим и настраиваем контроллер `JsonRecordsetWriter`:
+7. Далее находим и настраиваем контроллер `JsonRecordsetWriter`:
    ![JsonRecordsetWriter Controller](images/json-record-set-writer.png)
-3. Активируем все три контроллера.
-4. Возвращаемся к основному рабочему пространству и добавляем еще один процессор `UpdateAttribute`. Добавляем ему свойство filename.
+8. Активируем все три контроллера.
+9. Возвращаемся к основному рабочему пространству и добавляем еще один процессор `UpdateAttribute`. Добавляем ему свойство filename.
     ![UpdateAttribute Processor](images/update-attribute-2.png)
-5.  Последовательно соединяем процессоры. Обращаем внимание, что стрелка от `ConvertExcelToCSVProcessor` к `UpdateAttribute` идет только в случае `success`. Если в UpdateAttribute попадет и сконвертированный файл, и оригинальный, выберет для дальнейшей работы он неверный.
+10.  Последовательно соединяем процессоры. Обращаем внимание, что стрелка от `ConvertExcelToCSVProcessor` к `UpdateAttribute` идет только в случае `success`. Если в UpdateAttribute попадет и сконвертированный файл, и оригинальный, выберет для дальнейшей работы он неверный.
 
 ### Выгрузка файла из NiFi
+
+Выгружать файл необязательно. Можно отправить его по http. Можно остановиться на шагах предыдущего раздела (пропустив шаг 9) и продолжать работать с json данными в NiFi. Здесь мы выгружаем себе результат для наглядности.
 
 Добавляем Processor `PutFile`. Его конфигурация может выглядеть так:
   ![PutFile Processor](images/putfile.png)
