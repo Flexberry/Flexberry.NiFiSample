@@ -84,7 +84,7 @@
 * carnumber
 * brand
 
-Пол части машины
+Поля части машины
 * partname
 * countryname
 
