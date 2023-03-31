@@ -3,11 +3,10 @@
 Для преобразования одного JSON к другому по некоторым условиям можно сделать через процессор **JoltTransformJSON**.
 
 Подробнее про преобразование:
-
-https://jolt-demo.appspot.com/#inception (онлайн редактор с примерами)
-https://nifichina.github.io/jolt/JOLTIntroduction.pdf
-https://intercom.help/godigibee/en/articles/4239806-transformations-with-jolt
-https://intercom.help/godigibee/en/articles/4044359-transformer-getting-to-know-jolt
+<br/>https://jolt-demo.appspot.com/#inception (онлайн редактор с примерами)
+<br/>https://nifichina.github.io/jolt/JOLTIntroduction.pdf
+<br/>https://intercom.help/godigibee/en/articles/4239806-transformations-with-jolt
+<br/>https://intercom.help/godigibee/en/articles/4044359-transformer-getting-to-know-jolt
 
 **Общий принцип работы:** выбираем данные (селектор), определяем им новое имя/положение в результирующем JSON.
 
