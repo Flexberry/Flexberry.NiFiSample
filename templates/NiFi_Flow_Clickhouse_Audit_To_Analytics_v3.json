@@ -11,7 +11,7 @@
       {
         "identifier": "26520057-2049-37e5-83ac-a0526bfc6c4c",
         "instanceIdentifier": "01871026-d3f6-1d2f-a50b-e28b0b179c0e",
-        "name": "ReplaceText",
+        "name": "Null values ReplaceText",
         "comments": "",
         "position": { "x": 1992.0, "y": 656.0 },
         "type": "org.apache.nifi.processors.standard.ReplaceText",
@@ -21,7 +21,7 @@
           "version": "1.20.0"
         },
         "properties": {
-          "Regular Expression": "\"([a-zA-Z0-9а-яА-Я]+)\":\"\"",
+          "Regular Expression": "\"(OperationId|ObjectType|UserName|UserLogin|CarData)\":\"\"",
           "Replacement Value": "\"$1\":null",
           "Evaluation Mode": "Line-by-Line",
           "Text to Prepend": null,
@@ -1298,7 +1298,7 @@
         "backPressureDataSizeThreshold": "1 GB",
         "flowFileExpiration": "0 sec",
         "prioritizers": [],
-        "bends": [{ "x": 2480.0, "y": 312.0 }],
+        "bends": [{ "x": 2480.0, "y": 304.0 }],
         "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
         "partitioningAttribute": "",
         "loadBalanceCompression": "DO_NOT_COMPRESS",
@@ -1440,7 +1440,7 @@
         "backPressureDataSizeThreshold": "1 GB",
         "flowFileExpiration": "0 sec",
         "prioritizers": [],
-        "bends": [{ "x": 2480.0, "y": 520.0 }],
+        "bends": [{ "x": 2480.0, "y": 512.0 }],
         "loadBalanceStrategy": "DO_NOT_LOAD_BALANCE",
         "partitioningAttribute": "",
         "loadBalanceCompression": "DO_NOT_COMPRESS",
@@ -1702,7 +1702,7 @@
           "id": "26520057-2049-37e5-83ac-a0526bfc6c4c",
           "type": "PROCESSOR",
           "groupId": "1ef06e2f-bc0e-3795-9d8a-d552bc13dad6",
-          "name": "ReplaceText",
+          "name": "Null values ReplaceText",
           "comments": "",
           "instanceIdentifier": "01871026-d3f6-1d2f-a50b-e28b0b179c0e"
         },
@@ -1816,7 +1816,7 @@
           "id": "26520057-2049-37e5-83ac-a0526bfc6c4c",
           "type": "PROCESSOR",
           "groupId": "1ef06e2f-bc0e-3795-9d8a-d552bc13dad6",
-          "name": "ReplaceText",
+          "name": "Null values ReplaceText",
           "comments": "",
           "instanceIdentifier": "01871026-d3f6-1d2f-a50b-e28b0b179c0e"
         },
@@ -2054,7 +2054,7 @@
           "id": "26520057-2049-37e5-83ac-a0526bfc6c4c",
           "type": "PROCESSOR",
           "groupId": "1ef06e2f-bc0e-3795-9d8a-d552bc13dad6",
-          "name": "ReplaceText",
+          "name": "Null values ReplaceText",
           "comments": "",
           "instanceIdentifier": "01871026-d3f6-1d2f-a50b-e28b0b179c0e"
         },
