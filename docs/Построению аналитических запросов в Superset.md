@@ -97,31 +97,30 @@
 
 Для получения данных из JSON-представления, воспользуемся возможностями ClickHouse. Создадим и выполним следующий запрос в Superset (SQL → SQL Lab) для получения требуемых данных.
 
-<code>
-SELECT partCountry, COUNT() as partCount<br> 
-FROM (<br>
-  &nbsp;&nbsp;SELECT<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;JSONExtractRaw(CarData, 'separatedParts', 1,'PartCountry') AS partCountry<br>
-  &nbsp;&nbsp;FROM Analitics<br>
-  &nbsp;&nbsp;WHERE notEmpty(partCountry)<br>
-  <br>&nbsp;&nbsp;UNION ALL<br><br>
-  &nbsp;&nbsp;SELECT<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;JSONExtractRaw(CarData, 'separatedParts', 2,'PartCountry') AS partCountry<br>
-  &nbsp;&nbsp;FROM Analitics<br>
-  &nbsp;&nbsp;WHERE notEmpty(partCountry)<br>
-  <br>&nbsp;&nbsp;UNION ALL<br><br>
-  &nbsp;&nbsp;SELECT<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;JSONExtractRaw(CarData, 'separatedParts', 3,'PartCountry') AS partCountry<br>
-  &nbsp;&nbsp;FROM Analitics<br>
-  &nbsp;&nbsp;WHERE notEmpty(partCountry)<br>
-  <br>&nbsp;&nbsp;UNION ALL<br><br>
-  &nbsp;&nbsp;SELECT<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;JSONExtractRaw(CarData, 'separatedParts', 4,'PartCountry') AS partCountry<br>
-  &nbsp;&nbsp;FROM Analitics<br>
-  &nbsp;&nbsp;WHERE notEmpty(partCountry)<br>
-)<br>
+```
+SELECT partCountry, COUNT() as partCount FROM (
+  SELECT
+    JSONExtractRaw(CarData, 'separatedParts', 1,'PartCountry') AS partCountry
+  FROM Analitics
+  WHERE notEmpty(partCountry)
+  UNION ALL
+  SELECT
+    JSONExtractRaw(CarData, 'separatedParts', 2,'PartCountry') AS partCountry
+  FROM Analitics
+  WHERE notEmpty(partCountry)
+  UNION ALL
+  SELECT
+    JSONExtractRaw(CarData, 'separatedParts', 3,'PartCountry') AS partCountry
+  FROM Analitics
+  WHERE notEmpty(partCountry)
+  UNION ALL
+  SELECT
+    JSONExtractRaw(CarData, 'separatedParts', 4,'PartCountry') AS partCountry
+  FROM Analitics
+  WHERE notEmpty(partCountry)
+)
 GROUP BY partCountry
-</code>
+```
 
 Количество "UNION ALL" зависит от количества элементов массива "separatedParts".
 
