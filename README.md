@@ -49,6 +49,8 @@ clickhouse-client --host clickhouse-analytics-db --user default --password P@ssw
 
 ## Работа с nifi
 
+> **_NOTE:_** Более подробные описания и инструкции процессов находятся в [Общая инструкция.md](docs/%D0%9E%D0%B1%D1%89%D0%B0%D1%8F%20%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F.md) в папке docs.
+
 Необходимые для создания подключений к БД драйверы jdbc находятся в каталоге /opt/jdbc
 
 * postgresql-42.5.4.jar (класс org.postgresql.Driver, url соединения: jdbc:postgresql://app-postgre-db:5432/appdb) - драйвер для PostgreSQL
