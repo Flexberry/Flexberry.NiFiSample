@@ -4,5 +4,11 @@ COPY ClickhouseAnalyticsSettings/config.xml /etc/clickhouse-server/config.xml
 COPY ClickhouseAnalyticsSettings/users.xml /etc/clickhouse-server/users.xml
 COPY ClickhouseAnalytics.create.sql /var/clickhouse/schema/ClickhouseAnalytics.create.sql
 
-#После запускаконтейнера надо в него зайти и выполнить эту команду вручную, т.к пока через докер не выходит создать таблицы
-#CMD clickhouse-client --host clickhouse-analytics-db --user default --password P@ssw0rd --multiquery < /var/clickhouse/schema/ClickhouseAnalytics.create.sql
+RUN \
+    service clickhouse-server start && \
+    clickhouse-client \
+    --host localhost \
+    --user default \
+    --password P@ssw0rd \
+    --multiquery < /var/clickhouse/schema/ClickhouseAnalytics.create.sql && \
+    service clickhouse-server stop; 
